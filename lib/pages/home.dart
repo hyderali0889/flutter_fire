@@ -19,6 +19,7 @@ class _HomepageState extends State<Homepage> {
   var password2;
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
+  CollectionReference donks = FirebaseFirestore.instance.collection('donks');
 
   @override
   void initState() {
@@ -119,7 +120,6 @@ class _HomepageState extends State<Homepage> {
             child: const Text("Add To Firestore"),
             onPressed: addtofirestore,
           )),
-
         ],
       ),
     ));
@@ -171,13 +171,12 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
-   addtofirestore() {
-    users.add({
-            'full_name': "John Doe",
-            'company': "Stokes and Sons",
-            'age': 42
-          })
-          .then((value) => print("User Added"))
-          .catchError((error) => print("Failed to add user: $error"));
+  addtofirestore() {
+    users
+        .add({'full_name': "John Doe", 'company': "Stokes and Sons", 'age': 42})
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+
+    donks.add({"name": "donkey"});
   }
 }
