@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fire/pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_fire/pages/second.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => const Homepage(),
+        "/second" : (context) => const Second()
       },
     );
   }

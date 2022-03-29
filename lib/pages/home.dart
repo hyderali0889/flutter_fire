@@ -120,6 +120,13 @@ class _HomepageState extends State<Homepage> {
             child: const Text("Add To Firestore"),
             onPressed: addtofirestore,
           )),
+          Center(
+              child: TextButton(
+            child: const Text("go to page two"),
+            onPressed: () {
+              Navigator.pushNamed(context, "/second");
+            },
+          )),
         ],
       ),
     ));
