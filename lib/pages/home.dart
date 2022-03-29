@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -16,6 +17,8 @@ class _HomepageState extends State<Homepage> {
   var password;
   var email2;
   var password2;
+
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
 
   @override
   void initState() {
@@ -111,6 +114,12 @@ class _HomepageState extends State<Homepage> {
             child: const Text("Sign In With Google"),
             onPressed: signInWithGoogle,
           )),
+          Center(
+              child: TextButton(
+            child: const Text("Add To Firestore"),
+            onPressed: addtofirestore,
+          )),
+
         ],
       ),
     ));
@@ -160,5 +169,15 @@ class _HomepageState extends State<Homepage> {
         print('Wrong password provided for that user.');
       }
     }
+  }
+
+   addtofirestore() {
+    users.add({
+            'full_name': "John Doe",
+            'company': "Stokes and Sons",
+            'age': 42
+          })
+          .then((value) => print("User Added"))
+          .catchError((error) => print("Failed to add user: $error"));
   }
 }
